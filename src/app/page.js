@@ -9,7 +9,7 @@ import { StructuredOutputParser, OutputFixingParser } from 'langchain/output_par
 import { Document, Page, pdfjs } from 'react-pdf';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
-
+console.log(process.env.GPT_KEY);
 export default function Home() {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(false);
@@ -55,7 +55,7 @@ export default function Home() {
       const model = new OpenAI({
         temperature: 0,
         model: 'gpt-3.5-turbo',
-        openAIApiKey: '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',
+        openAIApiKey: process.env.GPT_KEY,
       });
     
       // Prepare input for the model
@@ -77,7 +77,7 @@ export default function Home() {
           new OpenAI({
             temperature: 0,
             model: 'gpt-3.5-turbo',
-            openAIApiKey: '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',
+            openAIApiKey: process.env.GPT_KEY,
           }),
           parser
         );
